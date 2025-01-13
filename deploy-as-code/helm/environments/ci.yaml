@@ -1,5 +1,5 @@
 global:
-  domain: cicd.tattvagavi.org ## Add your Domain Name Eg: site.mydomain.com
+  domain: build.tattvafoundation.org ## Add your Domain Name Eg: site.mydomain.com
   setup: fullsetup
   
 cluster-configs:
@@ -25,19 +25,19 @@ jenkins:
     enabled: true
     acl:
       admin:
-        - tattva-test*tattva # Add github team. Members of this team gets admin access on jenkins
+        - tattvafoundationrepo*admin # Add github team. Members of this team gets admin access on jenkins
       user:                                 # Add github team. Members of this team gets login access on jenkins
-        - tattva-test*tattva
+        - tattvafoundationrepo*tattva
        
 
   jobBuilder:    # Add jobBuilder repo's, add repo's ssh link
     repos: >-
-      'git@github.com:tattva-test/UPYOG.git'
+      'git@github.com:tattvafoundationrepo/UPYOG.git', 'git@github.com:tattvafoundationrepo/DIGIT-OSS.git'
   deploymentJobs:  # Setup deploymentJobs ACL 
-    - name: uat   # deployment job name
-      acl: [tattva-test*tattva] # GitHub team name, Members of the team get access to deployment job  
-    
-       
+    - name: uat    # deployment job name
+      acl: [tattvafoundationrepo*admin] # GitHub team name, Members of the team get access to deployment job
+    - name: dev    # deployment job name
+      acl: [tattvafoundationrepo*tattva] # GitHub team name, Members of the team get access to deployment job    
   master:
     ingress:
       enabled: true
@@ -65,7 +65,13 @@ cert-manager:
   clusterIssuer:
     stage:
       acme:
-        email: "faizan@tattvafoundation.org"     # Add mail id
+        email: "support@tattvafoundation.org"     # Add mail id
+
 
 cluster-autoscaler:
   enabled: false  # Autoscaling is typically not used in K3d
+
+
+
+
+  

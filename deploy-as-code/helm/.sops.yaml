@@ -8,5 +8,8 @@ creation_rules:
           
         - path_regex: environments/uat\-secrets\.yaml$
           kms: 'arn:aws:kms:ap-south-1:011528278089:key/4530fe52-b34d-4264-8f6d-eca3a1958d6a'
+        
+        - path_regex: environments/dev\-secrets\.yaml$
+          kms: 'arn:aws:kms:ap-south-1:011528278089:key/4530fe52-b34d-4264-8f6d-eca3a1958d6a'  
 
           
