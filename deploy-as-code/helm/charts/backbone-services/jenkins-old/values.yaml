@@ -17,13 +17,13 @@ oauth:
   enabled: false
   acl:
     admin: 
-      - egovernments*micro-service-devops
+      - TATTVA-SELF*tattva
     user: 
-      - egovernments*micro-service-dev
+      - TATTVA-SELF*tattva
 
 jobBuilder:
   repos: >-
-    'git@github.com:egovernments/core-services.git','git@github.com:egovernments/business-services.git'
+    'git@github.com:TATTVA-SELF/UPYOG.git'
 
 master:
   httpsKeyStore:
@@ -105,16 +105,10 @@ master:
   securityRealm: |-
     <securityRealm class="hudson.security.LegacySecurityRealm"/>
   # Allows to configure different AuthorizationStrategy using Jenkins XML
-  # authorizationStrategy: |-
-  #    <authorizationStrategy class="hudson.security.FullControlOnceLoggedInAuthorizationStrategy">
-  #      <denyAnonymousReadAccess>true</denyAnonymousReadAccess>
-  #    </authorizationStrategy>
-
   authorizationStrategy: |-
-    fullControlOnceLoggedInAuthorizationStrategy:
-      denyAnonymousReadAccess: true
-
-
+     <authorizationStrategy class="hudson.security.FullControlOnceLoggedInAuthorizationStrategy">
+       <denyAnonymousReadAccess>true</denyAnonymousReadAccess>
+     </authorizationStrategy>
   hostNetworking: false
   # When enabling LDAP or another non-Jenkins identity source, the built-in admin account will no longer exist.
   # If you disable the non-Jenkins identity store and instead use the Jenkins internal one,
@@ -417,7 +411,7 @@ master:
                   scm:
                     git:
                       credentialsId: "git_read"
-                      remote: "git@github.com:tattvafoundationrepo/CIOps.git"
+                      remote: "git@github.com:tattva-test/CIOps.git"
                       traits:
                       - "gitBranchDiscovery"
       system-message: | 
@@ -482,21 +476,21 @@ master:
                   cps {
                       script("""library 'ci-libs'
               {{- if (eq $job.name "central-instance") }}            
-              deployer(repo:'git@github.com:egovernments/DIGIT-DevOps.git', branch: 'central-instance', helmDir: 'deploy-as-code/helm', environment: '{{ $job.name }}')""")
+              deployer(repo:'git@github.com:tattva-test/DIGIT-DevOps.git', branch: 'master', helmDir: 'deploy-as-code/helm', environment: '{{ $job.name }}')""")
                       sandbox() 
                     }
                 }
                 disabled(false)
               }
-              {{- else if (eq $job.name "dev") }}            
-              deployer(repo:'git@github.com:nikhilmulinti-egov/DIGIT-DevOps.git', branch: 'quickstart', helmDir: 'deploy-as-code/helm', environment: '{{ $job.name }}')""")
+              {{- else if (eq $job.name "bootcamp") }}            
+              deployer(repo:'git@github.com:tattva-test/DIGIT-DevOps.git', branch: 'DIGIT-Bootcamp', helmDir: 'config-as-code/helm', environment: '{{ $job.name }}')""")
                       sandbox() 
                     }
                 }
                 disabled(false)
               }
               {{- else }}
-              deployer(repo:'git@github.com:tattvafoundationrepo/DIGIT-DevOps.git', branch: 'master', helmDir: 'deploy-as-code/helm', environment: '{{ $job.name }}')""")
+              deployer(repo:'git@github.com:tattva-test/DIGIT-DevOps.git', branch: 'master', helmDir: 'deploy-as-code/helm', environment: '{{ $job.name }}')""")
                       sandbox() 
                     }
                 }
