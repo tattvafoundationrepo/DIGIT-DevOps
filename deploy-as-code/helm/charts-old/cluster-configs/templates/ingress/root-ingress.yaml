@@ -1,0 +1,19 @@
+{{- with index .Values "cluster-configs" "root-ingress" -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+  {{- if ne .appRoot ""}}
+    nginx.ingress.kubernetes.io/app-root: /{{ .appRoot }}
+  {{- end }}    
+  name: {{ .name }}
+  namespace: {{ .namespace }}
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          serviceName: {{ .serviceName }}
+          servicePort: {{ .servicePort }} 
+        path: /          
+{{- end -}}

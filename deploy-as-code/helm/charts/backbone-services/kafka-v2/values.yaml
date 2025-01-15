@@ -1,14 +1,12 @@
-
 name: kafka-v2
 namespace: kafka-cluster
 replicas: 1
 zookeeperHosts: "zookeeper-v2.zookeeper-cluster:2181/kafka-v2"
 
 image:
-  pullPolicy: IfNotPresent  
+  pullPolicy: IfNotPresent
   repository: confluentinc/cp-kafka
-  tag: 5.2.2
-
+  tag: 5.4.1
 
 imagePullPolicy: IfNotPresent
 
@@ -26,13 +24,13 @@ podManagementPolicy: Parallel
 ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#update-strategies
 updateStrategy: OnDelete
 
+## Kafka Configuration
 tickTime: 2000
 syncLimit: 5
 initLimit: 10
 maxClientCnxns: 60
 autoPurgeSnapRetainCount: 3
 autoPurgePurgeInterval: 24
-
 
 heapOptions: "-Xms704M -Xmx704M"
 memory_limits: 1408Mi
@@ -44,6 +42,9 @@ replicationFactor: "2"
 minInsyncReplicas: "1"
 offsetsReplicationFactor: "3"
 
+## Replace deprecated port configuration with KAFKA_ADVERTISED_LISTENERS
+listeners: PLAINTEXT://0.0.0.0:9092,EXTERNAL://0.0.0.0:9093
+advertisedListeners: PLAINTEXT://kafka-v2.kafka-cluster.svc.cluster.local:9092,EXTERNAL://kafka-v2.kafka-cluster.svc.cluster.local:9093
 
 ## Persistent Volumes
 ## ref: https://kubernetes.io/docs/concepts/storage/persistent-volumes/
@@ -65,13 +66,12 @@ persistence:
   #   - diskName: kafka-2
   #     diskUri: /subscriptions/b4e1aa53-c521-44e6-8a4d-5ae107916b5b/resourceGroups/MC_egov-micro-dev_egov-micro-dev_southindia/providers/Microsoft.Compute/disks/kafka-2 
 
-  #openstack:
-  #  - f37a03aa-6212-4c62-a805-9ce139fab180
-  #  - f37a03aa-6212-4c62-a805-9ce139fab180
-  #  - f37a03aa-6212-4c62-a805-9ce139fab180
+  # openstack:
+  #   - f37a03aa-6212-4c62-a805-9ce139fab180
+  #   - f37a03aa-6212-4c62-a805-9ce139fab180
+  #   - f37a03aa-6212-4c62-a805-9ce139fab180
   
   dataDirSize: 50Gi
-
 
 ## Pod Compute Resources
 ## ref: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
@@ -118,4 +118,4 @@ prometheus:
 
     ## Resources configuration for the JMX exporter container.
     ## See the `resources` documentation above for details.
-    resources: {}  
+    resources: {}
