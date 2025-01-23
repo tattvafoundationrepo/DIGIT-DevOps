@@ -37,7 +37,9 @@ jenkins:
     - name: uat    # deployment job name
       acl: [tattvafoundationrepo*admin] # GitHub team name, Members of the team get access to deployment job
     - name: dev    # deployment job name
-      acl: [tattvafoundationrepo*tattva] # GitHub team name, Members of the team get access to deployment job    
+      acl: [tattvafoundationrepo*tattva] # GitHub team name, Members of the team get access to deployment job
+    - name: dev    # deployment job name
+      acl: [tattvafoundationrepo*prod] # GitHub team name, Members of the team get access to deployment job      
   master:
     ingress:
       enabled: true
