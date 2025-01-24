@@ -287,8 +287,8 @@ egov-mdms-service:
     gitSync:
       repo: "git@github.com:tattvafoundationrepo/bmc-mdms-data"   ##### Change repo url with Your fork Repo url
       branch: "uat"                                        ##### Change repo branch with Your fork Repo branch
-  mdms-folder: "egov-mdms-data"
-  masters-config-url: "file:///work-dir/egov-mdms-data/master-config.json"
+  mdms-folder: "bmc-mdms-data"
+  masters-config-url: "file:///work-dir/bmc-mdms-data/master-config.json"
   java-args: -Dspring.profiles.active=monitoring
 
 egov-indexer:
