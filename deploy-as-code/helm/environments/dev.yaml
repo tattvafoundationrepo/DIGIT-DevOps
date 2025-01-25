@@ -1,5 +1,5 @@
 global:
-   domain: bmc-uat.tattvafoundation.org ## Add your Domain Name
+   domain: bmc-dev.tattvafoundation.org ## Add your Domain Name
    
 cluster-configs:
     namespaces:
