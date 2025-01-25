@@ -154,6 +154,16 @@ egov-notification-sms:
   sms-error-codes: "401,403,404,405,406,407,408,409,410,411,412,413,414"
 
 
+egov-mdms-service:
+  memory_limits: "512Mi"
+
+egov-enc-service:
+  memory_limits: "512Mi"
+
+egov-user:
+  memory_limits: "512Mi"
+
+
 
 egov-persister:
   replicas: 1
@@ -164,6 +174,7 @@ egov-persister:
     gitSync:
       repo: "git@github.com:tattvafoundationrepo/configs"
       branch: "quickstart"
+      memory_limits: "512Mi"
 
 zuul:
   replicas: 1
