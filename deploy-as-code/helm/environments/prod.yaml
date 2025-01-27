@@ -208,22 +208,21 @@ egov-notification-sms:
   sms-error-codes: "401,403,404,405,406,407,408,409,410,411,412,413,414"
 
 egov-user:
-  heap: "-Xmx256m -Xms256m"  
-  memory_limits: 512Mi       
-  otp-validation: "true"     
+  heap: "-Xmx256m -Xms256m"
+  memory_limits: 512Mi
+  otp-validation: "true"
   citizen-otp-enabled: "true"
-  employee-otp-enabled: "true"  
-  access-token-validity: 60      
-  refresh-token-validity: 4320   
-  default-password-expiry: 60    
-  mobile-number-validation: "true"  
-  roles-state-level: "true"       
-  citizen-registration-withlogin: "true"  
-  citizen-otp-fixed: ""           
-  citizen-otp-fixed-enabled: "false"  
-  egov-state-level-tenant-id: "in"  
-  decryption-abac-enabled: "true"  
-
+  employee-otp-enabled: "false"
+  access-token-validity: 10080
+  refresh-token-validity: 20160
+  default-password-expiry: 90
+  mobile-number-validation: "false"
+  roles-state-level: "true"
+  citizen-registration-withlogin: "true"
+  citizen-otp-fixed: "123456"
+  citizen-otp-fixed-enabled: "fase"
+  egov-state-level-tenant-id: "in"
+  decryption-abac-enabled: "false"
 
 chatbot:
   kafka-topics-partition-count: 3
