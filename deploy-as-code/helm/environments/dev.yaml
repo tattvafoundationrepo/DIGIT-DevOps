@@ -185,7 +185,7 @@ egov-persister:
   initContainers:
     gitSync:
       repo: "git@github.com:tattvafoundationrepo/bmc-configs"      ##### Change repo url with Your fork Repo url
-      branch: "prod"
+      branch: "dev"
       memory_limits: 512Mi                                    ##### Change repo branch with Your fork Repo branch
 
 zuul:
