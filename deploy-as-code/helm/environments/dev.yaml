@@ -177,6 +177,20 @@ egov-accesscontrol:
 egov-user-event:
   memory_limits: "512Mi"    
 
+egov-custom-consumer:
+  erp-host: "http://citya-uat.localhost/"
+
+financeTenants: |
+  tenant.citya-uat.localhost=citya
+  tenant.cityb-uat.localhost=cityb
+  tenant.cityc-uat.localhost=cityc
+  tenant.cityd-uat.localhost=cityd
+  tenant.citye-uat.localhost=citye
+  location.user.role=Collection Operator
+  collection.debitaccounthead.client.impl.class=org.egov.collection.integration.services.DebitAccountHeadDetailsServiceImpl
+
+  
+
 
 egov-persister:
   replicas: 1
