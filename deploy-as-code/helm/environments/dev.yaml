@@ -15,6 +15,7 @@ cluster-configs:
                 db-host: "182.69.118.52" ## Add db-host name
                 db-name: sundeep ## Add db-name
                 db-url: "jdbc:postgresql://182.69.118.52:5432/sundeep" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
+                erp-db-url: "jdbc:postgresql://182.69.118.52:5432/erp"
                 domain: "bmc-uat.tattvafoundation.org" ## Add your Domain Name
                 egov-services-fqdn-name: "http://bmc-uat.tattvafoundation.org/" ## Add your Domain Name
                 egov-state-level-tenant-id: "mh" ##Add tenant id example: pb
