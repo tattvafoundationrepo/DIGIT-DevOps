@@ -25,7 +25,7 @@ healthChecks:
   livenessProbePath: "/report/health"
   readinessProbePath: "/report/health"
 tracing-enabled: "true"
-report-locationsfile-path: "file:///work-dir/configs/reports/reportFileLocationsv1.txt"
+report-locationsfile-path: "file:///work-dir/bmc-configs/reports/reportFileLocationsv1.txt"
 heap: "-Xmx192m -Xms192m"
 spring-datasource-tomcat-max-active: "5"
 
