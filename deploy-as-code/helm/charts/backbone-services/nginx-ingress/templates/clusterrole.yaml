@@ -1,19 +1,11 @@
-{{- if .Values.rbac.create }}
-
-{{- if and .Values.rbac.scope (not .Values.controller.scope.enabled) -}}
-  {{ required "Invalid configuration: 'rbac.scope' should be equal to 'controller.scope.enabled' (true/false)." (index (dict) ".") }}
-{{- end }}
-
-{{- if not .Values.rbac.scope -}}
+{{- $serviceName := include "nginx-ingress.name" . -}}
+{{- if .Values.rbac.create -}}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   labels:
-    {{- include "ingress-nginx.labels" . | nindent 4 }}
-    {{- with .Values.controller.labels }}
-    {{- toYaml . | nindent 4 }}
-    {{- end }}
-  name: {{ include "ingress-nginx.fullname" . }}
+    app: {{ template "nginx-ingress.name" . }}
+  name: {{ template "nginx-ingress.fullname" . }}
 rules:
   - apiGroups:
       - ""
@@ -23,29 +15,9 @@ rules:
       - nodes
       - pods
       - secrets
-{{- if not .Values.controller.scope.enabled }}
-      - namespaces
-{{- end}}
     verbs:
       - list
       - watch
-  - apiGroups:
-      - coordination.k8s.io
-    resources:
-      - leases
-    verbs:
-      - list
-      - watch
-{{- if and .Values.controller.scope.enabled .Values.controller.scope.namespace }}
-  - apiGroups:
-      - ""
-    resources:
-      - namespaces
-    resourceNames:
-      - "{{ .Values.controller.scope.namespace }}"
-    verbs:
-      - get
-{{- end }}
   - apiGroups:
       - ""
     resources:
@@ -59,9 +31,11 @@ rules:
     verbs:
       - get
       - list
+      - update
       - watch
   - apiGroups:
-      - networking.k8s.io
+      - extensions
+      - "networking.k8s.io" # k8s 1.14+
     resources:
       - ingresses
     verbs:
@@ -76,27 +50,10 @@ rules:
       - create
       - patch
   - apiGroups:
-      - networking.k8s.io
+      - extensions
+      - "networking.k8s.io" # k8s 1.14+
     resources:
       - ingresses/status
     verbs:
       - update
-  - apiGroups:
-      - networking.k8s.io
-    resources:
-      - ingressclasses
-    verbs:
-      - get
-      - list
-      - watch
-  - apiGroups:
-      - discovery.k8s.io
-    resources:
-      - endpointslices
-    verbs:
-      - list
-      - watch
-      - get
-{{- end }}
-
-{{- end }}
+{{- end -}}
