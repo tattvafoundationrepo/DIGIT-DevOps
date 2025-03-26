@@ -421,8 +421,6 @@ egov-telemetry-batch-process:
 # gateway >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 nginx-ingress:
-  images:
-    - quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.26.1
   replicas: 1
   default-backend-service: "egov/nginx"
   namespace: egov
@@ -434,13 +432,13 @@ nginx-ingress:
     image:
       repository: egovio/nginx-ingress-controller
       tag: "0.26.1"     
-    metrics:            #To collect the matrics data from nginx-ingress.
+    metrics:
       enabled: true
-      serviceMonitor:   #To enable the service monitoring of nginx-ingress
+      serviceMonitor:
         enabled: true
     service:
       prometheusRule:
-        enabled: true
+        enabled: true 
 
 cert-manager:
   email: "support@tattvafoundation.org"     ### Add email-id which used by cert-manager for certificates validation.
