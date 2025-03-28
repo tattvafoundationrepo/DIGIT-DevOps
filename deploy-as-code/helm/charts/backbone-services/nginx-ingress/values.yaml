@@ -53,10 +53,13 @@ controller:
     X-Frame-Options: "sameorigin"
     X-Content-Type-Options: "nosniff"
     X-Download-Options: "noopen"
-    Content-Security-Policy: "default-src 'self' http: 'unsafe-eval' 'unsafe-inline'; object-src 'none'; img-src 'self' http: data: blob:; style-src http: blob: 'unsafe-inline'; worker-src 'self' blob:; font-src 'self' http: data: blob:; child-src 'self' http: data: blob:;"
-    X-XSS-Protection: "1"
-    Referrer-Policy: "no-referrer-when-downgrade"    
-
+    Content-Security-Policy: default-src 'self'; img-src 'self' https://d1ad89wxkt5h4i.cloudfront.net data:; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'nonce-random123' 'sha256-gvwGTlsALTCa/7PQwmrgfKQkTA/xFp6nuPOY+1596hs=' http://d1ad89wxkt5h4i.cloudfront.net https://d1ad89wxkt5h4i.cloudfront.net http://*.uat.tattvafoundation.org https://*.uat.tattvafoundation.org http://ukpfms-digit-repo.s3.ap-south-1.amazonaws.com https://ukpfms-digit-repo.s3.ap-south-1.amazonaws.com
+    X-XSS-Protection: 1; mode=block
+    Referrer-Policy: "no-referrer-when-downgrade"
+    Permissions-Policy: "geolocation=(), microphone=(), camera=()"
+    Expect-CT: "enforce, max-age=86400"
+    Cache-Control: "no-store, no-cache, must-revalidate, proxy-revalidate"
+    Access-Control-Allow-Methods: "GET, POST, OPTIONS"
   # Required for use with CNI based kubernetes installations (such as ones set up by kubeadm),
   # since CNI and hostport don't mix yet. Can be deprecated once https://github.com/kubernetes/kubernetes/issues/23920
   # is merged
