@@ -57,7 +57,7 @@ controller:
     X-Frame-Options: "sameorigin"
     X-Content-Type-Options: "nosniff"
     X-Download-Options: "noopen"
-    Content-Security-Policy: "default-src 'self' https:; script-src 'self' https://d1ad89wxkt5h4i.cloudfront.net https://uat.tattvafoundation.org 'unsafe-inline' 'unsafe-hashes'; object-src 'none'; img-src 'self' https: data: blob:; style-src 'self' https: blob: 'unsafe-inline'; worker-src 'self' blob:; font-src 'self' https: data: blob:; child-src 'self' https: data: blob:; frame-src *.digit.org uat.tattvafoundation.org; frame-ancestors *.digit.org uat.tattvafoundation.org;"
+    Content-Security-Policy: default-src 'self'; img-src 'self' https://d1ad89wxkt5h4i.cloudfront.net https://portal.mcgm.gov.in data:; style-src 'self' https://fonts.googleapis.com 'sha256-TMIFk5ZjGNpczjRE6YVaBrPXVNzANj9JRK+w2bh9TX8='; font-src https://fonts.gstatic.com; script-src 'self' 'nonce-random123' 'sha256-gvwGTlsALTCa/7PQwmrgfKQkTA/xFp6nuPOY+1596hs=' http://d1ad89wxkt5h4i.cloudfront.net https://d1ad89wxkt5h4i.cloudfront.net http://*.uat.tattvafoundation.org https://*.uat.tattvafoundation.org http://ukpfms-digit-repo.s3.ap-south-1.amazonaws.com https://ukpfms-digit-repo.s3.ap-south-1.amazonaws.com
     X-XSS-Protection: 1; mode=block
     Referrer-Policy: "no-referrer-when-downgrade"
     Permissions-Policy: "geolocation=(), microphone=(), camera=()"
