@@ -121,7 +121,7 @@ egov-user:
   heap: "-Xmx256m -Xms256m"
   memory_limits: 512Mi
   otp-validation: "false"
-  citizen-otp-enabled: "false"
+  citizen-otp-enabled: "true"
   employee-otp-enabled: "false"
   access-token-validity: 5
   refresh-token-validity: 20160
