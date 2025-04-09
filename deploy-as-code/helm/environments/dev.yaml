@@ -120,7 +120,7 @@ digit-ui:
 egov-user:
   heap: "-Xmx256m -Xms256m"
   memory_limits: 512Mi
-  otp-validation: "false"
+  otp-validation: "true"
   citizen-otp-enabled: "true"
   employee-otp-enabled: "false"
   access-token-validity: 5
