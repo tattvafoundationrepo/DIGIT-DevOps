@@ -7,7 +7,7 @@ labels:
 ingress:
   enabled: true
   zuul: true
-  context: "user"
+  context: "eg-user"
 
 # Init Containers Configs
 initContainers:
