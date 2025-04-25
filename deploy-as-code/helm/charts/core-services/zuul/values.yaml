@@ -85,7 +85,9 @@ env: |
   - name: EGOV_OPEN_ENDPOINTS_WHITELIST
     value: {{ index .Values "egov-open-endpoints-whitelist" | quote }}  
   - name: EGOV_MIXED_MODE_ENDPOINTS_WHITELIST
-    value: {{ index .Values "egov-mixed-mode-endpoints-whitelist" | quote }}    
+    value: {{ index .Values "egov-mixed-mode-endpoints-whitelist" | quote }} 
+  - name: TATTVA-MIXED-MODE-ENDPOINTS-WHITELIST
+    value: {{ index .Values "tattva-mixed-mode-endpoints-whitelist" | quote }}  
   - name: EVENTLOG_ENABLED
     value: {{ index .Values "eventlog-enabled" | quote }}   
   - name: EVENTLOG_TOPIC
