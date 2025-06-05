@@ -27,9 +27,10 @@ healthChecks:
   readinessProbePath: "/egov-location/health"
 appType: "java-spring"
 tracing-enabled: true
-heap: "-Xmx192m -Xms192m"
+heap: "-Xmx384m -Xms256m"
 java-args: "-Dspring.profiles.active=monitoring"
 gmaps: true
+memory_limits: 512Mi
 # Additional Container Envs
 env: |
   - name: SPRING_KAFKA_CONSUMER_GROUP_ID

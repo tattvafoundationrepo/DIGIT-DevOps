@@ -9,8 +9,8 @@ cluster-configs:
     name: root-ingress
     namespace: egov
     cert-issuer: "letsencrypt-staging"
-    appRoot: citizen
-    serviceName: citizen
+    appRoot: digit-ui
+    serviceName: digit-ui
     servicePort: 80
  
   nginx-errors:
@@ -22,7 +22,7 @@ cluster-configs:
 
   configmaps:
     egov-config:
-      namespace: [ egov , monitoring]
+      namespace: [ egov ]
       name: egov-config
       server-tomcat-max-connections: "500"
       server-tomcat-max-threads: "10"
@@ -32,7 +32,7 @@ cluster-configs:
 
     egov-service-host:    
       name: egov-service-host
-      namespace: [ egov, monitoring ] 
+      namespace: [ egov ] 
 
   secrets:
     db: 
@@ -45,15 +45,7 @@ cluster-configs:
 
     egov-filestore: 
       namespace: egov
-      name: egov-filestore
-
-    pgr-ai-chatbot:
-      namespace: egov
-      name: pgr-ai-chatbot
-      
-    egov-filestore-azure: 
-      namespace: egov
-      name: egov-filestore-azure     
+      name: egov-filestore     
       
     egov-location: 
       namespace: egov
@@ -81,7 +73,7 @@ cluster-configs:
 
     git-sync: 
       namespace: [ egov ]
-      name: git-creds
+      name: git-creds   
 
     kibana: 
       namespace: egov
@@ -150,7 +142,3 @@ cluster-configs:
     postgres:
       namespace: jenkins
       name: postgres
-    
-    airflow:
-      namespace: egov
-      name: airflow

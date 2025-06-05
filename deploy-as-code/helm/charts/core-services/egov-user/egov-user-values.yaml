@@ -20,14 +20,14 @@ initContainers:
 # Container Configs
 image:
   repository: "egov-user"
-replicas: "2"
+replicas: "1"
 healthChecks:
   enabled: true
   livenessProbePath: "/user/health"
   readinessProbePath: "/user/health"
 appType: "java-spring"
 tracing-enabled: true
-state-level-tenant-id: "pb"
+egov-state-level-tenant-id: "pb"
 decryption-abac-enabled: "false"
 account-unlock-cool-down-period-minutes: "30"
 otp-validation: "true"
@@ -41,7 +41,7 @@ roles-state-level: "true"
 citizen-registration-withlogin: "true"
 citizen-otp-fixed: "123456"
 citizen-otp-fixed-enabled: "true"
-heap: "-Xmx192m -Xms192m"
+heap: "-Xmx384m -Xms256m"
 java-args: ""
 
 # Additional Container Envs
@@ -58,10 +58,7 @@ env: |
         name: egov-service-host
         key: egov-otp
   - name: EGOV_USER_HOST
-    valueFrom:
-      configMapKeyRef:
-        name: egov-service-host
-        key: egov-user
+    value: "http://localhost:8080"
   - name: EGOV_SERVICES_ACCESSCONTROL_HOST
     valueFrom:
       configMapKeyRef:
@@ -87,12 +84,7 @@ env: |
       configMapKeyRef:
         name: egov-service-host
         key: egov-enc-service
-  - name: EGOV_LOCALIZATION_HOST
-    valueFrom:
-      configMapKeyRef:
-        name: egov-service-host
-        key: egov-localization
-  - name: STATE_LEVEL_TENANT_ID
+  - name: EGOV_STATE_LEVEL_TENANT_ID
     valueFrom:
       configMapKeyRef:
         name: egov-config

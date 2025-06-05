@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+apiVersion: extensions/v1alpha1
 kind: DaemonSet
 metadata:
   name: {{ template "name" . }}
@@ -7,10 +7,6 @@ metadata:
     app: {{ template "name" . }}
     kubernetes.io/cluster-service: "true"
 spec:
-  selector:
-    matchLabels:
-      app: {{ template "name" . }}
-      kubernetes.io/cluster-service: "true"
   template:
     metadata:
       labels:
@@ -37,7 +33,6 @@ spec:
               readOnly: true
             - name: {{ template "name" . }}-config
               mountPath: /fluent-bit/etc/
-      affinity: {}       
       terminationGracePeriodSeconds: 10
       volumes:
         - name: varlog
@@ -50,4 +45,4 @@ spec:
           configMap:
             name: {{ template "name" . }}-config
       serviceAccountName: {{ template "name" . }}
-      serviceAccount: {{ template "name" . }} 
+      serviceAccount: {{ template "name" . }}    

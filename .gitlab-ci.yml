@@ -1,0 +1,14 @@
+image: bitnami/kubectl:1.27
+
+stages:
+  - deploy
+
+deploy_to_k8s:
+  stage: deploy
+  script:
+    - mkdir -p ~/.kube
+    - echo "$KUBE_CONFIG" | base64 -d > ~/.kube/config
+    - chmod 600 ~/.kube/config
+    - kubectl apply -f k8s/
+  only:
+    - master

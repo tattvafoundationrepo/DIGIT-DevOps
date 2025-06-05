@@ -12,9 +12,9 @@ image:
 replicas: "1"
 appType: "java-spring"
 tracing-enabled: true
-heap: "-Xmx192m -Xms192m"
+heap: "-Xmx384m -Xms256m"
 erp-host: "https://jalandhar-dev.egovernments.org/"
-erp-signout-url: "/services/EGF/rest/logout"
+erp-signout-url: "/services/EGF/rest/ClearToken"
 
 # Additional Container Envs
 env: |
