@@ -479,6 +479,22 @@ egov-hrms:
   memory_limits: 512Mi
   
 
+pgadmin:
+  replicas: 1
+  dbUrl: "bmc-prod-db.cvgnu83fnwgi.ap-south-1.rds.amazonaws.com"
+  dbReadUrl: "bmc-prod-db.cvgnu83fnwgi.ap-south-1.rds.amazonaws.com"
+  environment: "DEMO"
+  maintenance-db-name: "bmcprod2025"
+  db-admin-username: "testuser"
+  db-read-username: "test_read_user"
+  cookie-protection: "False"
+  max-query-history: "50"
+  max-login-attempts: "5"
+  enable-save-password: "False"
+  persistence:
+    enabled: true
+    dataDirSize: "2Gi"  
+
 
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
