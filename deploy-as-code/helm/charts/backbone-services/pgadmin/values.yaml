@@ -18,7 +18,13 @@ ingress:
   #   nginx.ingress.kubernetes.io/auth-url:     https://$host/oauth2/auth 
 
 # Init Containers Configs
-initContainers: {}
+initContainers: |
+  - name: fix-permissions
+    image: busybox
+    command: ["sh", "-c", "chown -R 5050:5050 /var/lib/pgadmin"]
+    volumeMounts:
+      - name: storage
+        mountPath: /var/lib/pgadmin
 
 # Container Configs
 image:
