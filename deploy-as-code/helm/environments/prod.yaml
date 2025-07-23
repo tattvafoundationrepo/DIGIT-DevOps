@@ -13,7 +13,7 @@ cluster-configs:
         egov-config:
             namespace: [ egov, monitoring ]
             data:
-                db-host: bmc-prod-db.cvgnu83fnwgi.ap-south-1.rds.amazonaws.com:5432 ## Add db-host name eg: upyog-demo.database.azure.com
+                db-host: bmc-prod-db.cvgnu83fnwgi.ap-south-1.rds.amazonaws.com ## Add db-host name eg: upyog-demo.database.azure.com
                 db-name: bmcprod2025 ## Add db-name
                 db-url: jdbc:postgresql://bmc-prod-db.cvgnu83fnwgi.ap-south-1.rds.amazonaws.com:5432/bmcprod2025 ## example: jdbc:postgresql://upyog-demo.postgres.database.azure.com:5432/egov_demo
                 domain: upyog.mcgm.gov.in ## Add your Domain Name    
