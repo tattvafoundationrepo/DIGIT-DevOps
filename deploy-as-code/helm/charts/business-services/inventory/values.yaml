@@ -130,7 +130,6 @@
             value: "persist-user-events-async"
           - name: TRACER_OPENTRACING_ENABLED
             value: "true"
-          {{- end }}
           # Added topics as environment variables
           - name: KAFKA_TOPICS
             value: "save-inventory-item:1:1,save-inventory-transaction:1:1,save-inventory-requirement:1:1,save-inventory-item-details:1:1,save-inventory-request:1:1"
