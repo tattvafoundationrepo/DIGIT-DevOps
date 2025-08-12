@@ -15,7 +15,7 @@ initContainers:
     enabled: true
     schemaTable: "inventory-v1_schema"
     image:
-      repository: "inventory-v1-db"
+      repository: "inventory-db"
 
 # Container Configs
 image:
