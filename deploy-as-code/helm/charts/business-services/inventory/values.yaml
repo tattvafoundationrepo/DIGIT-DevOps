@@ -85,7 +85,7 @@
           - name: INVENTORY_KAFKA_SAVE_ITEM_DETAILS_TOPIC
             value: {{ .Values.kafkaTopics.inventory.saveItemDetails | quote }}
           - name: INVENTORY_KAFKA_SAVE_REQUEST_TOPIC
-          value: {{ .Values.kafkaTopics.inventory.saveRequest | quote }}
+            value: {{ .Values.kafkaTopics.inventory.saveRequest | quote }}
           - name: SPRING_KAFKA_PRODUCER_KEY_SERIALIZER
             value: "org.apache.kafka.common.serialization.StringSerializer"
           - name: SPRING_KAFKA_PRODUCER_VALUE_SERIALIZER
@@ -127,7 +127,7 @@
                 name: egov-config
                 key: egov-services-fqdn-name
           - name: EGOV_USR_EVENTS_CREATE_TOPIC
-            value: "persist-user-events-async
+            value: "persist-user-events-async"
           - name: TRACER_OPENTRACING_ENABLED
             value: "true"
           {{- end }}
