@@ -19,7 +19,7 @@ initContainers:
 
 # Container Configs
 image:
-  repository: "inventory-v1"
+  repository: "inventory"
 replicas: "1"
 memory_limits: "512Mi"
 healthChecks:
