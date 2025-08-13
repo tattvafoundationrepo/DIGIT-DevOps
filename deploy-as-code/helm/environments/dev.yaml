@@ -88,6 +88,7 @@ cluster-configs:
                 ebinder-v1: "http://ebinder-v1:8080/"
                 deonar-v1: "http://deonar-v1:8080/"
                 employee-service: "http://employee-service:8080/"
+                inventory-v1: "http://inventory-v1:8080/"
                 zuul: "http://zuul:8080/"
 
 nginx-ingress:
