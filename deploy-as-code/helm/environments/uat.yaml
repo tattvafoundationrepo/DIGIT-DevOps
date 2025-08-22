@@ -641,9 +641,9 @@ kafka-v2:
     iscsi:
       targetPortal: 192.168.1.160:3260
       iqn:
-      - iqn.2005-10.org.freenas.ctl:kf-1
-      - iqn.2005-10.org.freenas.ctl:kf-2
-      - iqn.2005-10.org.freenas.ctl:kf-3
+      - iqn.2005-10.org.freenas.ctl:kafka-v2-0
+      - iqn.2005-10.org.freenas.ctl:kafka-v2-1
+      - iqn.2005-10.org.freenas.ctl:kafka-v2-2
     zookeeperHosts: "zookeeper-v2.zookeeper-cluster:2181/kafka"
   
   heap: "-Xmx750m -Xms750m"
