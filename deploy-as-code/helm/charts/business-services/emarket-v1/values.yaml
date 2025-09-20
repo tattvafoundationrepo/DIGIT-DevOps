@@ -1,31 +1,31 @@
         # Common Labels
         labels:
-          app: "eMarket-v1"
+          app: "emarket-v1"
           group: "rainmaker"
 
         # Ingress Configs
         ingress:
           enabled: true
           zuul: true
-          context: "eMarket-v1"
+          context: "emarket-v1"
 
         # Init Containers Configs
         initContainers:
           dbMigration:
             enabled: true
-            schemaTable: "eMarket-v1_schema"
+            schemaTable: "emarket-v1_schema"
             image:
-              repository: "eMarket-v1-db"
+              repository: "emarket-v1-db"
 
         # Container Configs
         image:
-          repository: "eMarket-v1"
+          repository: "emarket-v1"
         replicas: "1"
         memory_limits: "512Mi"
         healthChecks:
           enabled: false
-          livenessProbePath: "/eMarket-v1/health"
-          readinessProbePath: "/eMarket-v1/health"
+          livenessProbePath: "/emarket-v1/health"
+          readinessProbePath: "/emarket-v1/health"
         appType: "java-spring"
         tracing-enabled: true
         heap: "-Xmx192m -Xms192m"
@@ -82,11 +82,11 @@
                 key: tracer-errors-provideexceptionindetails
           {{- end }}
           - name: SPRING_KAFKA_CONSUMER_GROUP_ID
-            value: "save-bmc-application"
+            value: "save-license"
           - name: PERSISTER_SAVE_PROPERTY_TOPIC
-            value: "bmc-welfare-persister"
+            value: "emarket-persister"
           - name: PERSISTER_UPDATE_PROPERTY_TOPIC
-            value: "bmc-welfare-persister"
+            value: "emarket-persister"
           - name: SPRING_KAFKA_PRODUCER_KEY_SERIALIZER
             value: "org.apache.kafka.common.serialization.StringSerializer"
           - name: SPRING_KAFKA_PRODUCER_VALUE_SERIALIZER
@@ -137,5 +137,5 @@
           {{- end }}
           # Added topics as environment variables
           - name: KAFKA_TOPICS
-            value: "update-bmc-application:1:1,upsert-aadharuser:1:1,upsert-userbank:1:1,upsert-userotherdetails:1:1,insert-useraddress:1:1,update-useraddress:1:1,upsert-userqualification:1:1,upsert-user-document:1:1,upsert-usersubschememapping:1:1,save-scheme-machine:1:1,save-scheme-course:1:1,save-user-scheme-application:1:1"
+            value: "save-license:1:1,save-allotment:1:1,update-allotment:1:1,update-licensee:1:1"
 
