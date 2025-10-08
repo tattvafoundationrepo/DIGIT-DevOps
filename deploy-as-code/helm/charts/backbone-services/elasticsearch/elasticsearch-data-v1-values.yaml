@@ -134,7 +134,7 @@ podSecurityPolicy:
       - persistentVolumeClaim
 
 persistence:
-  enabled: true
+  enabled: false
   dataDirSize: "25Gi"
   annotations: {}
 
