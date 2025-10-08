@@ -6,7 +6,7 @@ namespace: egov
 replicas: 1
 
 image:
-  repository: "quay.io/pusher/oauth2_proxy"
+  repository: "tattvafoundation/oauth2-proxy:v5.1.0"
   tag: "v5.1.0"
   pullPolicy: "IfNotPresent"
 
