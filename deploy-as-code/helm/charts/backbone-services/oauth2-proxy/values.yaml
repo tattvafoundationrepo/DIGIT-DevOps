@@ -85,7 +85,7 @@ config:
   configFile: |-
     email_domains = [ "*" ]
     github_org = "tattvafoundationrepo" 
-    github_team = "BmcDev"
+    github_team = "bmcdev"
     upstreams = [ "file:///dev/null" ]
   # Custom configuration file: oauth2_proxy.cfg
   # configFile: |-
