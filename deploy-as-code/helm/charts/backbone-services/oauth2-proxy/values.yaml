@@ -6,7 +6,7 @@ namespace: egov
 replicas: 1
 
 image:
-  repository: "tattvafoundation/oauth2-proxy:v5.1.0"
+  repository: "tattvafoundation/oauth2-proxy"
   tag: "v5.1.0"
   pullPolicy: "IfNotPresent"
 
