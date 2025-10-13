@@ -64,7 +64,7 @@
               configMapKeyRef:
                 name: egov-service-host
                 key: egov-workflow-v2
-          - name: EGOV_BILLING_HOST
+          - name: EGOV_BILLINGSERVICE_HOST
             valueFrom:
               configMapKeyRef:
                 name: egov-service-host
