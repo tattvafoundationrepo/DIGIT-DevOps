@@ -69,7 +69,7 @@
               configMapKeyRef:
                 name: egov-service-host
                 key: billing-service
-          - name: EGOV_COLLECTION_HOST
+          - name: EGOV_COLLECTIONSERVICE_HOST
             valueFrom:
               configMapKeyRef:
                 name: egov-service-host
