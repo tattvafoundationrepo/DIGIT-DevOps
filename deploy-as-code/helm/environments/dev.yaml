@@ -180,6 +180,9 @@ egov-user-event:
 egov-custom-consumer:
   erp-host: "http://citya-uat.localhost/"
 
+billing-service:
+  memory_limits: "512Mi"
+
 financeTenants: |
   tenant.citya-uat.localhost=citya
   tenant.cityb-uat.localhost=cityb
