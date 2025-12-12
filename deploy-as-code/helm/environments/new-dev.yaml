@@ -50,8 +50,8 @@ cluster-configs:
                 collection-search-indexer: "http://collection-search-indexer:8080/"
                 citizen-indexer: "http://citizen-indexer:8080/"
                 citizen-services: "http://citizen-services:8080/"
-                dashboard-analytics: http://dashboard-analytics.egov:8080/
-                dashboard-ingest: http://dashboard-ingest.egov:8080/
+                dashboard-analytics: "http://dashboard-analytics.egov:8080/"
+                dashboard-ingest: "http://dashboard-ingest.egov:8080/"
                 demand-services: "http://demand-services:8080/"
                 data-sync-employee: "http://data-sync-employee:8080/"
                 egov-common-masters: "http://egov-common-masters:8080/"
@@ -126,7 +126,7 @@ cluster-configs:
                 sw-calculator: "http://sw-calculator.egov:8080/"
                 land-services: "http://land-services.egov:8080/"
                 noc-services: "http://noc-services.egov:8080/"
-                minio-url: "https://minio-uat.upyog.org/"
+                minio-url: "https://minio-quickstart.digit.org/"
                 egov-user-chatbot: "http://egov-user-chatbot:8080/"
                 zuul: "http://zuul:8080/"
                 egov-url-shortening: "http://egov-url-shortening:8080/"
@@ -135,14 +135,19 @@ cluster-configs:
                 vehicle: "http://vehicle.egov:8080"
                 vendor: "http://vendor.egov:8080"
                 egov-edcr: "http://egov-edcr.egov:8080/"
-                echallan-calculator: http://echallan-calculator.egov:8080/
-                echallan-services: http://echallan-services.egov:8080/
+                echallan-calculator: "http://echallan-calculator.egov:8080/"
+                echallan-services: "http://echallan-services.egov:8080/"
                 inbox: "http://inbox.egov:8080/"
                 turn-io-adapter: "http://turn-io-adapter.egov:8080/"
                 pgr-services: "http://pgr-services.egov:8080/"
                 birth-death-services: "http://birth-death-services.egov:8080/"
                 egov-pdf: "http://egov-pdf.egov:8080/"
-                mdms-v2: http://mdms-v2.egov:8080/
+                pet-services: "http://pet-service:8080/"
+                bmc-service-v1: "http://bmc-service-v1:8080/"
+                ebinder-v1: "http://ebinder-v1:8080/"
+                deonar-v1: "http://deonar-v1:8080/"
+                employee-service: "http://employee-service:8080/"
+                inventory-v1: "http://inventory-v1:8080/"
 employee:
   dashboard-url: "https://dashboard-pbuat.egovernments.org/s/w---s/app/kibana#/dashboard/4e687470-f3c7-11e8-8d09-b151e2b1cf8e?embed=true&_g=(refreshInterval%3A(pause%3A!f%2Cvalue%3A300000)%2Ctime%3A(from%3Anow-15m%2Cmode%3Aquick%2Cto%3Anow))"
   custom-js-injection: |
