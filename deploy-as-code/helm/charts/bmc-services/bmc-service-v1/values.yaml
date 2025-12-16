@@ -24,8 +24,8 @@
         memory_limits: "512Mi"
         healthChecks:
           enabled: false
-          livenessProbePath: "/bmc-service-v1/health"
-          readinessProbePath: "/bmc-service-v1/health"
+          livenessProbePath: "/bmc-service-v1/actuator/health/liveness"
+          readinessProbePath: "bmc-service-v1/actuator/health/readiness"
         appType: "java-spring"
         tracing-enabled: true
         heap: "-Xmx192m -Xms192m"
