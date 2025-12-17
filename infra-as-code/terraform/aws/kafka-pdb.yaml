@@ -1,0 +1,11 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: kafka-v2-pdb
+  namespace: kafka-cluster
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: kafka
+
