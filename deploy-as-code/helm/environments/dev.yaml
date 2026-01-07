@@ -181,7 +181,7 @@ egov-custom-consumer:
   erp-host: "http://citya-uat.localhost/"
 
 billing-service:
-  memory_limits: "512Mi"
+  memory_limits: "1024Mi"
 
 financeTenants: |
   tenant.citya-uat.localhost=citya
