@@ -186,6 +186,9 @@ egov-idgen:
   java-args: -Dspring.profiles.active=monitoring
   autocreate-new-seq: "true"
 
+billing-service:
+  memory_limits: "512Mi"
+
 egov-notification-sms:
   sms-provider-url: "sms provider url" ## Add sms provider url
   sms.provider.class: "Generic"
