@@ -190,22 +190,26 @@ billing-service:
   memory_limits: "512Mi"
 
 egov-notification-sms:
-  sms-provider-url: "sms provider url" ## Add sms provider url
-  sms.provider.class: "Generic"
+  sms-provider-url: "https://msdgweb.mgov.gov.in/esms/sendsmsrequestDLT" ## Add sms provider url
+  sms.provider.class: "MSDG"
   sms.provider.contentType:  "application/x-www-form-urlencoded"
-  sms-config-map: "{'User':'$username', 'passwd': '$password', 'sid':'$senderid', 'mobilenumber':'$mobileno', 'message':'$message', 'mtype':'N', 'DR':'N', 'smsservicetype':'singlemsg'}"
-  sms-gateway-to-use: "sms provider name" ## Add sms provider name
-  sms-sender: "sms sender" ## Add sms sender
-  sms-sender-requesttype: "GET"
+  sms-config-map: "{'username':'$username', 'password': '$password', 'senderid':'$senderid', 'mobileno':'$mobileno','templateid': '$extraParam', 'content':'$message', 'smsservicetype':'unicodeotpmsg','key':'$securekey'}"
+  sms.extra.config.map: "{'extraParam': '1007295827350045418','securekey': 'a75b07c8-4102-42ad-ab30-f64cf00cfb35'}"
+  sms-gateway-to-use: "UPDESCO" ## Add sms provider name
+  sms-sender: "MCGMTA" ## Add sms sender
+  sms-sender-requesttype: "POST"
   sms-custom-config: "true"
-  sms-extra-req-params: "mtype=N&DR=Y"
-  sms-sender-req-param-name: "sid"
-  sms-sender-username-req-param-name: "User"
-  sms-sender-password-req-param-name: "passwd"
-  sms-destination-mobile-req-param-name: "mobilenumber"
-  sms-message-req-param-name: "message"
+  sms-sender-username: "MCGMSEVA-UPYOG"
+  sms-sender-password: "Tattva@2023#$"
+  sms-extra-req-params: '{"templateid":"1007295827350045418","key":"a75b07c8-4102-42ad-ab30-f64cf00cfb35"}'
+  sms-sender-req-param-name: "senderid"
+  sms-sender-username-req-param-name: "username"
+  sms-sender-password-req-param-name: "password"
+  sms-destination-mobile-req-param-name: "mobileno"
+  sms-message-req-param-name: "content"
   sms-error-codes: "401,403,404,405,406,407,408,409,410,411,412,413,414"
 
+  
 egov-user:
   heap: "-Xmx256m -Xms256m"
   memory_limits: 512Mi
