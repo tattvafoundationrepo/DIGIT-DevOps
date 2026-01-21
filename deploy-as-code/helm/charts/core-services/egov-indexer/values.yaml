@@ -46,6 +46,17 @@ env: |
       configMapKeyRef:
         name: egov-config
         key: es-indexer-host
+  - name: EGOV_INDEXER_ES_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: elasticsearch-master-creds
+        key: username
+
+  - name: EGOV_INDEXER_ES_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: elasticsearch-master-creds
+        key: password
   - name: EGOV_INDEXER_YML_REPO_PATH
     value: {{ index .Values "egov-indexer-yaml-repo-path" | quote }}
   {{- if index .Values "global" "serializers-timezone-in-ist" }}
