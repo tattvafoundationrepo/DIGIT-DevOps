@@ -21,7 +21,7 @@ image:
   repository: "dashboard-analytics"
 replicas: "1"
 tracing-enabled: true
-config-schema-paths: "file:///work-dir/configs/egov-dss-dashboards/dashboard-analytics/*.json"
+config-schema-paths: "file:///work-dir/bmc-configs/egov-dss-dashboards/dashboard-analytics/*.json"
 
 # Additional Container Envs
 env: |
