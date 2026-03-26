@@ -24,8 +24,8 @@ replicas: "1"
 memory_limits: "512Mi"
 healthChecks:
   enabled: false
-  livenessProbePath: "/inventory-v1/health"
-  readinessProbePath: "/inventory-v1/health"
+  livenessProbePath: "/inventory-v1/health/liveness"
+  readinessProbePath: "/inventory-v1/health/readiness"
 appType: "java-spring"
 tracing-enabled: true
 heap: "-Xmx192m -Xms192m"
