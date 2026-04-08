@@ -509,66 +509,70 @@ logging-config:
 jaeger:
   host: "jaeger-agent.monitoring"
   port: "6831"
-  sampler-type: const
+  sampler-type: remote
   sampler-param: 1
   collector:
     samplingConfig: |
       {
         "service_strategies": [
-          {
-            "service": "tl-services",
-            "type": "probabilistic",
-            "param": 0.5
-          },
-          {
-            "service": "tl-calculator",
-            "type": "probabilistic",
-            "param": 0.5
-          },
-          {
-            "service": "report-service",
-            "type": "probabilistic",
-            "param": 0.5
-          },
-          {
-            "service": "pt-services-v2",
-            "type": "probabilistic",
-            "param": 0.5
-          },
-          {
-            "service": "pt-calculator-v2",
-            "type": "probabilistic",
-            "param": 0.5
-          },
-          {
-            "service": "collection-services",
-            "type": "probabilistic",
-            "param": 0.2
-          },
-          {
-            "service": "billing-service",
-            "type": "probabilistic",
-            "param": 0.2
-          },
-          {
-            "service": "egov-data-uploader",
-            "type": "probabilistic",
-            "param": 0.2
-          },
-          {
-            "service": "egov-hrms",
-            "type": "probabilistic",
-            "param": 0.5
-          },
-          {
-            "service": "rainmaker-pgr",
-            "type": "probabilistic",
-            "param": 0.5
-          }
+
+          // 🔴 High Core (0.5)
+          { "service": "tl-services", "type": "probabilistic", "param": 0.5 },
+          { "service": "pt-services-v2", "type": "probabilistic", "param": 0.5 },
+          { "service": "collection-services", "type": "probabilistic", "param": 0.5 },
+          { "service": "billing-service", "type": "probabilistic", "param": 0.5 },
+          { "service": "rainmaker-pgr", "type": "probabilistic", "param": 0.5 },
+          { "service": "pgr-services", "type": "probabilistic", "param": 0.5 },
+          { "service": "ws-services", "type": "probabilistic", "param": 0.5 },
+          { "service": "sw-services", "type": "probabilistic", "param": 0.5 },
+          { "service": "birth-death-services", "type": "probabilistic", "param": 0.5 },
+          { "service": "bmc-service-v1", "type": "probabilistic", "param": 0.5 },
+          { "service": "ebinder-v1", "type": "probabilistic", "param": 0.5 },
+          { "service": "deonar-v1", "type": "probabilistic", "param": 0.5 },
+          { "service": "employee-service", "type": "probabilistic", "param": 0.5 },
+          { "service": "inventory-v1", "type": "probabilistic", "param": 0.5 },
+
+          // 🟠 Core Logic (0.3)
+          { "service": "tl-calculator", "type": "probabilistic", "param": 0.3 },
+          { "service": "pt-calculator", "type": "probabilistic", "param": 0.3 },
+          { "service": "pt-calculator-v2", "type": "probabilistic", "param": 0.3 },
+          { "service": "ws-calculator", "type": "probabilistic", "param": 0.3 },
+          { "service": "sw-calculator", "type": "probabilistic", "param": 0.3 },
+          { "service": "fsm-calculator", "type": "probabilistic", "param": 0.3 },
+          { "service": "firenoc-calculator", "type": "probabilistic", "param": 0.3 },
+          { "service": "bpa-calculator", "type": "probabilistic", "param": 0.3 },
+          { "service": "echallan-calculator", "type": "probabilistic", "param": 0.3 },
+
+          // 🟡 Domain Services (0.2)
+          { "service": "property-services", "type": "probabilistic", "param": 0.2 },
+          { "service": "pt-property", "type": "probabilistic", "param": 0.2 },
+          { "service": "firenoc-services", "type": "probabilistic", "param": 0.2 },
+          { "service": "bpa-services", "type": "probabilistic", "param": 0.2 },
+          { "service": "land-services", "type": "probabilistic", "param": 0.2 },
+          { "service": "noc-services", "type": "probabilistic", "param": 0.2 },
+          { "service": "fsm", "type": "probabilistic", "param": 0.2 },
+          { "service": "vehicle", "type": "probabilistic", "param": 0.2 },
+          { "service": "vendor", "type": "probabilistic", "param": 0.2 },
+          { "service": "pet-services", "type": "probabilistic", "param": 0.2 },
+
+          // 🟡 Gateway / Access (0.2)
+          { "service": "zuul", "type": "probabilistic", "param": 0.2 },
+          { "service": "inbox", "type": "probabilistic", "param": 0.2 },
+
+          // 🟡 HR / internal (0.2)
+          { "service": "egov-hrms", "type": "probabilistic", "param": 0.2 },
+          { "service": "hr-employee", "type": "probabilistic", "param": 0.2 },
+          { "service": "hr-employee-v2", "type": "probabilistic", "param": 0.2 },
+
+          // ⚫ Low priority / async (0.1)
+          { "service": "egov-data-uploader", "type": "probabilistic", "param": 0.1 },
+          { "service": "dashboard-ingest", "type": "probabilistic", "param": 0.1 },
+          { "service": "data-sync-employee", "type": "probabilistic", "param": 0.1 }
+
         ],
         "default_strategy": {
           "type": "probabilistic",
-          "param": 0.05
+          "param": 0.02
         }
       }
 
