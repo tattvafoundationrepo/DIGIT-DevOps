@@ -21,7 +21,7 @@
         image:
           repository: "emarket-v1"
         replicas: "1"
-        memory_limits: "512Mi"
+        memory_limits: "1536Mi"
         healthChecks:
           enabled: true
           livenessProbePath: "/emarket-v1/health/liveness"
