@@ -20,6 +20,13 @@ ingress:
 image:
   repository: "egov-filestore"
 replicas: "1"
+resources:
+  requests:
+    memory: "768Mi"
+    cpu: "250m"
+  limits:
+    memory: "1536Mi"
+    cpu: "1000m"
 healthChecks:
   enabled: true
   livenessProbePath: "/filestore/health"
