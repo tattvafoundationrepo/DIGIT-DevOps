@@ -28,7 +28,7 @@ appType: "java-spring"
 tracing-enabled: true
 is-bucket-fixed: "true"
 fixed-bucketname: "egov-rainmaker"
-heap: "-Xmx384m -Xms256m"
+heap: "-Xmx1024m -Xms512m"
 file-storage-mount-path: "/filestore"
 is-nfs-enabled: false
 is-s3-enabled: true
