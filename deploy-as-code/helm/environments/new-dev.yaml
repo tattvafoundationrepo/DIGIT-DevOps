@@ -180,6 +180,7 @@ egov-filestore:
   allowed-file-formats: "jpg,jpeg,png,doc,docx,pdf,odt,ods,text,dxf,xls,xlsx"
   filestore-url-validity: 3600
   fixed-bucketname: ukpfms-digit-repo  ## Add filestore bucket name
+  memory_limits: "1024Mi"
 
 egov-idgen:
   idformat-from-mdms: "true"
