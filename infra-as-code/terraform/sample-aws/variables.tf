@@ -255,7 +255,7 @@ variable "karpenter_allowed_instance_types" {
 
 variable "karpenter_capacity_types" {
   description = "Capacity types Karpenter is allowed to use"
-  default     = ["on-demand"]
+  default     = ["spot", "on-demand"]
 }
 
 variable "karpenter_node_arch" {
@@ -275,7 +275,7 @@ variable "karpenter_memory_limit_gib" {
 
 variable "karpenter_node_volume_size_gb" {
   description = "Root EBS volume size in GiB for Karpenter-launched nodes"
-  default     = 100
+  default     = 60
 }
 
 variable "karpenter_consolidate_after" {
