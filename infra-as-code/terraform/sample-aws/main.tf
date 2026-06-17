@@ -14,6 +14,14 @@ terraform {
       source  = "hashicorp/kubernetes"
       version = ">= 3.0"
     }
+    helm = {
+      source  = "hashicorp/helm"
+      version = ">= 2.10.1, < 3.0.0"
+    }
+    kubectl = {
+      source  = "alekc/kubectl"
+      version = ">= 2.0.2"
+    }
     time = {
       source  = "hashicorp/time"
       version = ">= 0.9"
@@ -259,6 +267,14 @@ resource "aws_eks_addon" "core_dns" {
   addon_version = var.core_dns_addon_version
 }
 
+resource "aws_eks_addon" "eks_pod_identity_agent" {
+  count = var.enable_karpenter ? 1 : 0
+
+  cluster_name  = data.aws_eks_cluster.cluster.name
+  addon_name    = "eks-pod-identity-agent"
+  addon_version = var.eks_pod_identity_agent_addon_version
+}
+
 ################################
 # SECURITY GROUP RULES
 ################################
@@ -280,6 +296,161 @@ resource "aws_security_group_rule" "rds_db_ingress_managed_nodes" {
   security_group_id        = module.network.rds_db_sg_id
   source_security_group_id = var.eks_node_security_group_id
   type                     = "ingress"
+}
+
+################################
+# KARPENTER
+################################
+module "karpenter" {
+  count = var.enable_karpenter ? 1 : 0
+
+  source  = "terraform-aws-modules/eks/aws//modules/karpenter"
+  version = "~> 21.0"
+
+  cluster_name = module.eks.cluster_name
+
+  create_node_iam_role = false
+  node_iam_role_arn    = var.eks_managed_node_role_arn
+  create_access_entry  = false
+
+  tags = {
+    KubernetesCluster = var.cluster_name
+  }
+
+  depends_on = [aws_eks_addon.eks_pod_identity_agent]
+}
+
+resource "helm_release" "karpenter_crd" {
+  count = var.enable_karpenter ? 1 : 0
+
+  namespace  = "kube-system"
+  name       = "karpenter-crd"
+  repository = "oci://public.ecr.aws/karpenter"
+  chart      = "karpenter-crd"
+  version    = var.karpenter_chart_version
+  wait       = true
+}
+
+resource "helm_release" "karpenter" {
+  count = var.enable_karpenter ? 1 : 0
+
+  depends_on = [
+    helm_release.karpenter_crd,
+    module.karpenter,
+  ]
+
+  namespace  = "kube-system"
+  name       = "karpenter"
+  repository = "oci://public.ecr.aws/karpenter"
+  chart      = "karpenter"
+  version    = var.karpenter_chart_version
+  wait       = false
+  skip_crds  = true
+
+  values = [yamlencode({
+    serviceAccount = {
+      create = true
+      name   = module.karpenter[0].service_account
+    }
+    settings = {
+      clusterName       = module.eks.cluster_name
+      clusterEndpoint   = module.eks.cluster_endpoint
+      interruptionQueue = module.karpenter[0].queue_name
+    }
+  })]
+}
+
+resource "kubectl_manifest" "karpenter_node_class" {
+  count = var.enable_karpenter ? 1 : 0
+
+  depends_on = [helm_release.karpenter]
+
+  yaml_body = yamlencode({
+    apiVersion = "karpenter.k8s.aws/v1"
+    kind       = "EC2NodeClass"
+    metadata = {
+      name = var.karpenter_node_class_name
+    }
+    spec = {
+      amiFamily = "AL2023"
+      role      = var.eks_managed_node_role_name
+      subnetSelectorTerms = [
+        for subnet_id in module.network.private_subnets : {
+          id = subnet_id
+        }
+      ]
+      securityGroupSelectorTerms = [{
+        id = var.eks_node_security_group_id
+      }]
+      blockDeviceMappings = [{
+        deviceName = "/dev/xvda"
+        ebs = {
+          volumeSize          = "${var.karpenter_node_volume_size_gb}Gi"
+          volumeType          = "gp3"
+          encrypted           = true
+          deleteOnTermination = true
+        }
+      }]
+      tags = {
+        KubernetesCluster = var.cluster_name
+      }
+    }
+  })
+}
+
+resource "kubectl_manifest" "karpenter_node_pool" {
+  count = var.enable_karpenter ? 1 : 0
+
+  depends_on = [kubectl_manifest.karpenter_node_class]
+
+  yaml_body = yamlencode({
+    apiVersion = "karpenter.sh/v1"
+    kind       = "NodePool"
+    metadata = {
+      name = var.karpenter_node_pool_name
+    }
+    spec = {
+      template = {
+        metadata = {
+          labels = {
+            nodepool = var.karpenter_node_pool_name
+          }
+        }
+        spec = {
+          nodeClassRef = {
+            group = "karpenter.k8s.aws"
+            kind  = "EC2NodeClass"
+            name  = var.karpenter_node_class_name
+          }
+          requirements = [
+            {
+              key      = "node.kubernetes.io/instance-type"
+              operator = "In"
+              values   = var.karpenter_allowed_instance_types
+            },
+            {
+              key      = "kubernetes.io/arch"
+              operator = "In"
+              values   = [var.karpenter_node_arch]
+            },
+            {
+              key      = "karpenter.sh/capacity-type"
+              operator = "In"
+              values   = var.karpenter_capacity_types
+            }
+          ]
+        }
+      }
+      limits = {
+        cpu    = tostring(var.karpenter_cpu_limit)
+        memory = "${var.karpenter_memory_limit_gib}Gi"
+      }
+      disruption = {
+        consolidationPolicy = "WhenEmptyOrUnderutilized"
+        consolidateAfter    = var.karpenter_consolidate_after
+      }
+    }
+  })
 }
 
 ################################

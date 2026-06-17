@@ -217,3 +217,68 @@ variable "core_dns_addon_version" {
   description = "Version for the coredns EKS addon"
   default     = "v1.13.1-eksbuild.1"
 }
+
+variable "enable_karpenter" {
+  description = "Enable Karpenter controller and default NodePool resources"
+  default     = false
+}
+
+variable "eks_pod_identity_agent_addon_version" {
+  description = "Version for the EKS pod identity agent addon used by Karpenter"
+  default     = "v1.3.8-eksbuild.2"
+}
+
+variable "karpenter_chart_version" {
+  description = "Karpenter Helm chart version"
+  default     = "1.8.1"
+}
+
+variable "eks_managed_node_role_name" {
+  description = "Existing IAM role name used by EKS nodes and Karpenter-launched nodes"
+  default     = "bmc-prod-managed-node-role"
+}
+
+variable "karpenter_node_class_name" {
+  description = "Karpenter EC2NodeClass name"
+  default     = "default"
+}
+
+variable "karpenter_node_pool_name" {
+  description = "Karpenter NodePool name"
+  default     = "default"
+}
+
+variable "karpenter_allowed_instance_types" {
+  description = "EC2 instance types Karpenter is allowed to launch"
+  default     = ["m5a.xlarge", "m5a.2xlarge", "m5a.4xlarge"]
+}
+
+variable "karpenter_capacity_types" {
+  description = "Capacity types Karpenter is allowed to use"
+  default     = ["on-demand"]
+}
+
+variable "karpenter_node_arch" {
+  description = "CPU architecture for Karpenter-launched nodes"
+  default     = "amd64"
+}
+
+variable "karpenter_cpu_limit" {
+  description = "Maximum aggregate CPU Karpenter can provision for this NodePool"
+  default     = 32
+}
+
+variable "karpenter_memory_limit_gib" {
+  description = "Maximum aggregate memory in GiB Karpenter can provision for this NodePool"
+  default     = 128
+}
+
+variable "karpenter_node_volume_size_gb" {
+  description = "Root EBS volume size in GiB for Karpenter-launched nodes"
+  default     = 100
+}
+
+variable "karpenter_consolidate_after" {
+  description = "How long Karpenter waits before consolidating empty or underutilized nodes"
+  default     = "5m"
+}

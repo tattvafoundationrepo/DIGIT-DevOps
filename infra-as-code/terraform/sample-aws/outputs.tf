@@ -74,3 +74,5 @@ output "worker_security_group_id" {
   description = "The security group id of worker nodes"
   value       = module.eks.node_security_group_id
 }
+
+
