@@ -460,38 +460,24 @@ module "es-master" {
   source             = "../modules/storage/aws"
   storage_count      = 3
   environment        = var.cluster_name
-  disk_prefix        = "es-master"
+  disk_prefix        = "es-storage-elasticsearch-master-v1"
   availability_zones = var.availability_zones
   storage_sku        = "gp3"
-  disk_size_gb       = 25
+  disk_size_gb       = 5
+  additional_tags = {
+    app = "elasticsearch-master-v1"
+  }
 }
 
 module "es-data-v1" {
   source             = "../modules/storage/aws"
   storage_count      = 3
   environment        = var.cluster_name
-  disk_prefix        = "es-data-v1"
-  availability_zones = var.availability_zones
-  storage_sku        = "gp3"
-  disk_size_gb       = 100
-}
-
-module "zookeeper" {
-  source             = "../modules/storage/aws"
-  storage_count      = 3
-  environment        = var.cluster_name
-  disk_prefix        = "zookeeper"
+  disk_prefix        = "es-storage-elasticsearch-data-v1"
   availability_zones = var.availability_zones
   storage_sku        = "gp3"
   disk_size_gb       = 20
-}
-
-module "kafka" {
-  source             = "../modules/storage/aws"
-  storage_count      = 3
-  environment        = var.cluster_name
-  disk_prefix        = "kafka"
-  availability_zones = var.availability_zones
-  storage_sku        = "gp3"
-  disk_size_gb       = 200
+  additional_tags = {
+    app = "elasticsearch-data-v1"
+  }
 }

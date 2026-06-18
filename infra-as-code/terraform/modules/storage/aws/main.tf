@@ -6,8 +6,11 @@ resource "aws_ebs_volume" "vol" {
   type              = var.storage_sku
   snapshot_id       = var.snapshot_id
 
-  tags = {
-    Name              = "${var.disk_prefix}-${count.index}"
-    KubernetesCluster = var.environment
-  }
+  tags = merge(
+    {
+      Name              = "${var.disk_prefix}-${count.index}"
+      KubernetesCluster = var.environment
+    },
+    var.additional_tags
+  )
 }

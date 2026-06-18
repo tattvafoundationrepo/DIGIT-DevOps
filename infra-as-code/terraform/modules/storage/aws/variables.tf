@@ -8,3 +8,8 @@ variable "storage_count" {}
 variable "snapshot_id" {
   default = null
 }
+
+variable "additional_tags" {
+  type    = map(string)
+  default = {}
+}
