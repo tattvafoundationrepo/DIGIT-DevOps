@@ -120,6 +120,8 @@ resources: |
 ## Allows specification of additional environment variables
 extraEnv:
   java: |
+      - name: TZ
+        value: "Asia/Kolkata"
       - name: SPRING_DATASOURCE_URL
         valueFrom:
           configMapKeyRef:
