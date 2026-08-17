@@ -35,6 +35,7 @@ heap: "-Xmx384m -Xms256m"
 java-args: "-Dspring.profiles.active=monitoring"
 java-debug: ""
 receiptnumber-servicebased: "false"
+memory_limits: "1024Mi"
 
 # Additional Container Envs
 env: |
